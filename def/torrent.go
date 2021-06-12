@@ -16,11 +16,10 @@ type Forum struct {
 
 type TorrentRecord struct {
 	ID           string     `xml:"id,attr"`
-	RegisteredAt string     `xml:"registered_at,attr"`
+	RegisteredAt string     `xml:"registred_at,attr"`
 	Size         string     `xml:"size,attr"`
 	Torrent      Torrent    `xml:"torrent"`
 	Forum        Forum      `xml:"forum"`
 	Content      string     `xml:"content"`
-	RawAttrs     []xml.Attr `xml:",any,attr"`
 	RawContent   []byte     `xml:",innerxml"`
 }
