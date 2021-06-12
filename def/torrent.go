@@ -6,7 +6,7 @@ type Torrent struct {
 }
 
 type Forum struct {
-	ID string `xml:"id,attr"`
+	ID   string `xml:"id,attr"`
 	Name string `xml:",chardata"`
 }
 

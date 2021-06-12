@@ -6,13 +6,13 @@ import (
 )
 
 type FileWrapper struct {
-	r io.ReadCloser
+	r  io.ReadCloser
 	br *bufio.Reader
 }
 
 func NewFileWrapper(r io.ReadCloser) *FileWrapper {
 	return &FileWrapper{
-		r: r,
+		r:  r,
 		br: bufio.NewReader(r),
 	}
 }

@@ -6,10 +6,10 @@ import (
 	"os"
 
 	"github.com/Snawoot/trusearch/def"
+	"github.com/Snawoot/trusearch/scanner/multiscanner"
+	xmlscanner "github.com/Snawoot/trusearch/scanner/xml"
 	"github.com/Snawoot/trusearch/task/forums"
 	"github.com/Snawoot/trusearch/util"
-	xmlscanner "github.com/Snawoot/trusearch/scanner/xml"
-	"github.com/Snawoot/trusearch/scanner/multiscanner"
 
 	"github.com/alecthomas/kong"
 )
