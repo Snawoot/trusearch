@@ -1,8 +1,9 @@
 package forums
 
 import (
-	"io"
+	"github.com/Snawoot/trusearch/def"
 )
 
-func Forums(xmldata io.Reader) int {
+func Forums(xmldata def.RecordScanner) int {
+	return 0
 }

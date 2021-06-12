@@ -9,21 +9,20 @@ import (
 
 type XMLScanner struct {
 	inp io.ReadCloser
-	dec xml.Decoder
+	dec *xml.Decoder
 	end bool
 }
 
 func NewXMLScanner(input io.ReadCloser) *XMLScanner {
-	s := XMLScanner{
+	return &XMLScanner{
 		inp: input,
 		dec: xml.NewDecoder(input),
 	}
-	return s
 }
 
 func (s *XMLScanner) Close() error {
-	if !end {
-		end = true
+	if !s.end {
+		s.end = true
 		return s.inp.Close()
 	} else {
 		return nil
@@ -46,9 +45,9 @@ func (s *XMLScanner) Scan() (*def.TorrentRecord, error) {
 
 		switch se := t.(type) {
 		case xml.StartElement:
-			if se.Name == "torrent" {
+			if se.Name.Local == "torrent" {
 				var tr def.TorrentRecord
-				err = s.dec.DecodeElement(&tr, se)
+				err = s.dec.DecodeElement(&tr, &se)
 				if err == io.EOF {
 					s.Close()
 				}

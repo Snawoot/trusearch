@@ -11,7 +11,7 @@ type MultiScanner struct {
 }
 
 func NewMultiScanner(scanners []def.RecordScanner) *MultiScanner {
-	return MultiScanner{scanners}
+	return &MultiScanner{scanners}
 }
 
 func (s *MultiScanner) Scan() (*def.TorrentRecord, error) {

@@ -5,7 +5,11 @@ import (
 	"log"
 	"os"
 
-	"github.com/task/forums"
+	"github.com/Snawoot/trusearch/def"
+	"github.com/Snawoot/trusearch/task/forums"
+	"github.com/Snawoot/trusearch/util"
+	xmlscanner "github.com/Snawoot/trusearch/scanner/xml"
+	"github.com/Snawoot/trusearch/scanner/multiscanner"
 
 	"github.com/alecthomas/kong"
 )
@@ -21,13 +25,13 @@ var CLI struct {
 	Help struct{} `cmd default:"1" help:"Prints CLI synopsis"`
 }
 
-func main() {
+func run() int {
 	ctx := kong.Parse(&CLI)
 	switch ctx.Command() {
 	case "scan <script-file> <xmls>":
 		fmt.Printf("%#v", CLI.Scan)
 	case "forums <xmls>":
-		fmt.Printf("%#v", CLI.Scan)
+		return forums.Forums(wrapInputs(CLI.Forums.Xmls))
 	case "help":
 		parser, err := kong.New(&CLI)
 		if err != nil {
@@ -40,4 +44,17 @@ func main() {
 	default:
 		log.Fatal("Unknown command:", ctx.Command())
 	}
+	return 0
+}
+
+func main() {
+	os.Exit(run())
+}
+
+func wrapInputs(inputs []*os.File) def.RecordScanner {
+	wrappedInputs := make([]def.RecordScanner, len(inputs))
+	for i, inp := range inputs {
+		wrappedInputs[i] = xmlscanner.NewXMLScanner(util.NewFileWrapper(inp))
+	}
+	return multiscanner.NewMultiScanner(wrappedInputs)
 }
