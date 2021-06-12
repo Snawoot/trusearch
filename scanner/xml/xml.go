@@ -54,6 +54,7 @@ func (s *XMLScanner) Scan() (*def.TorrentRecord, error) {
 				if err != nil {
 					return nil, err
 				}
+				tr.RawAttrs = se.Attr
 				return &tr, err
 			}
 		default:

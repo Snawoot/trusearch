@@ -52,7 +52,7 @@ func writeElement(rec *def.TorrentRecord, wr io.Writer) error {
 		return err
 	}
 
-	_, err = wr.Write([]byte("</torrent>"))
+	_, err = wr.Write([]byte("</torrent>\n"))
 	if err != nil {
 		return err
 	}

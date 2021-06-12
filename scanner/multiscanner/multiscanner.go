@@ -29,6 +29,6 @@ func (s *MultiScanner) Scan() (*def.TorrentRecord, error) {
 				return nil, err
 			}
 		}
-		return scanres, err
+		return scanres, nil
 	}
 }
