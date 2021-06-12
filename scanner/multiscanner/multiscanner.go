@@ -10,7 +10,7 @@ type MultiScanner struct {
 	scanners []def.RecordScanner
 }
 
-func NewMultiScanner(scanners ...[]def.RecordScanner) *MultiScanner {
+func NewMultiScanner(scanners []def.RecordScanner) *MultiScanner {
 	return MultiScanner{scanners}
 }
 
