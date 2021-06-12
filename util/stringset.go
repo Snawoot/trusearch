@@ -23,6 +23,10 @@ func (s *StringSet) Has(elem string) bool {
 	return has
 }
 
+func (s *StringSet) Count() int {
+	return len(s.m)
+}
+
 func StringSetFromSlice(elems []string) *StringSet {
 	s := NewStringSet()
 	for _, elem := range elems {

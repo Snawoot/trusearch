@@ -64,6 +64,7 @@ func writeElement(rec *def.TorrentRecord, wr io.Writer) error {
 }
 
 func Split(scanner def.RecordScanner, dirPath string, whitelist []string) int {
+	wl := util.StringSetFromSlice(whitelist)
 	m := make(map[string]*bufio.Writer)
 	for {
 		rec, err := scanner.Scan()
@@ -73,6 +74,10 @@ func Split(scanner def.RecordScanner, dirPath string, whitelist []string) int {
 		if err != nil {
 			log.Printf("Got error on input scan: %v", err)
 			return 3
+		}
+
+		if wl.Count() > 0 && !wl.Has(rec.Forum.ID) {
+			continue
 		}
 
 		wr, ok := m[rec.Forum.ID]
