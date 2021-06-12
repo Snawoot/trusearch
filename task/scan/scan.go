@@ -36,7 +36,7 @@ func Scan(scanner def.RecordScanner, funcCode string) int {
 			return 3
 		}
 
-		_, err = jsFun(vm.ToValue(rec))
+		_, err = jsFun(goja.Undefined(), vm.ToValue(*rec))
 		if err != nil {
 			log.Printf("Function invocation failed: %v", err)
 		}
