@@ -31,7 +31,7 @@ func run() int {
 	case "scan <script-file> <xmls>":
 		fmt.Printf("%#v", CLI.Scan)
 	case "forums <xmls>":
-		return forums.Forums(wrapInputs(CLI.Forums.Xmls))
+		return forums.Forums(wrapInputs(CLI.Forums.Xmls), os.Stdout)
 	case "help":
 		parser, err := kong.New(&CLI)
 		if err != nil {
