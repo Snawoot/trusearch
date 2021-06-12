@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
 
@@ -9,6 +9,7 @@ import (
 	"github.com/Snawoot/trusearch/scanner/multiscanner"
 	xmlscanner "github.com/Snawoot/trusearch/scanner/xml"
 	"github.com/Snawoot/trusearch/task/forums"
+	"github.com/Snawoot/trusearch/task/scan"
 	"github.com/Snawoot/trusearch/task/split"
 	"github.com/Snawoot/trusearch/util"
 
@@ -35,7 +36,11 @@ func run() int {
 	ctx := kong.Parse(&CLI)
 	switch ctx.Command() {
 	case "scan <script-file> <xmls>":
-		fmt.Printf("%#v", CLI.Scan)
+		scriptBytes, err := ioutil.ReadAll(CLI.Scan.ScriptFile)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return scan.Scan(wrapInputs(CLI.Scan.Xmls), string(scriptBytes))
 	case "forums <xmls>":
 		return forums.Forums(wrapInputs(CLI.Forums.Xmls), os.Stdout)
 	case "split <xmls>":
