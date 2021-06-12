@@ -9,6 +9,7 @@ import (
 	"github.com/Snawoot/trusearch/scanner/multiscanner"
 	xmlscanner "github.com/Snawoot/trusearch/scanner/xml"
 	"github.com/Snawoot/trusearch/task/forums"
+	"github.com/Snawoot/trusearch/task/split"
 	"github.com/Snawoot/trusearch/util"
 
 	"github.com/alecthomas/kong"
@@ -22,6 +23,11 @@ var CLI struct {
 	Forums struct {
 		Xmls []*os.File `arg help:"XML files to process"`
 	} `cmd help:"Scan XML and print CSV with forum IDs and names"`
+	Split struct {
+		Whitelist []string   `help:"Comma-separated list of Forum IDs to process. Default is to process everything"`
+		Dir       string     `help:"Output directory" default:"." type:"existingdir"`
+		Xmls      []*os.File `arg help:"XML files to process"`
+	} `cmd help:"Divide XML file into smaller ones by Forum ID"`
 	Help struct{} `cmd default:"1" help:"Prints CLI synopsis"`
 }
 
@@ -32,6 +38,8 @@ func run() int {
 		fmt.Printf("%#v", CLI.Scan)
 	case "forums <xmls>":
 		return forums.Forums(wrapInputs(CLI.Forums.Xmls), os.Stdout)
+	case "split <xmls>":
+		return split.Split(wrapInputs(CLI.Split.Xmls), CLI.Split.Dir, CLI.Split.Whitelist)
 	case "help":
 		parser, err := kong.New(&CLI)
 		if err != nil {

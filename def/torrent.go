@@ -17,4 +17,5 @@ type TorrentRecord struct {
 	Torrent      Torrent `xml:"torrent"`
 	Forum        Forum   `xml:"forum"`
 	Content      string  `xml:"content"`
+	Raw          []byte  `xml:",innerxml"`
 }
