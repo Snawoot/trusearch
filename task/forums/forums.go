@@ -6,10 +6,11 @@ import (
 	"log"
 
 	"github.com/Snawoot/trusearch/def"
+	"github.com/Snawoot/trusearch/util"
 )
 
 func Forums(scanner def.RecordScanner, wr io.Writer) int {
-	m := make(map[string]struct{})
+	m := util.NewStringSet()
 	csvWr := csv.NewWriter(wr)
 	defer csvWr.Flush()
 	for {
@@ -22,9 +23,8 @@ func Forums(scanner def.RecordScanner, wr io.Writer) int {
 			return 3
 		}
 
-		_, ok := m[rec.Forum.ID]
-		if !ok {
-			m[rec.Forum.ID] = struct{}{}
+		if !m.Has(rec.Forum.ID) {
+			m.Add(rec.Forum.ID)
 			csvWr.Write([]string{rec.Forum.ID, rec.Forum.Name})
 		}
 	}
