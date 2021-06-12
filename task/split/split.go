@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"path/filepath"
+	"strings"
 
 	"github.com/Snawoot/trusearch/def"
 	"github.com/Snawoot/trusearch/util"
@@ -35,11 +36,13 @@ func writeElement(rec *def.TorrentRecord, wr io.Writer) error {
 		return err
 	}
 
-	for _, attr := range rec.RawAttrs {
-		_, err := wr.Write([]byte(fmt.Sprintf("%s=\"%s\" ", attr.Name.Local, attr.Value)))
-		if err != nil {
-			return err
-		}
+	pairs := make([]string, len(rec.RawAttrs))
+	for i, attr := range rec.RawAttrs {
+		pairs[i] = fmt.Sprintf("%s=\"%s\"", attr.Name.Local, attr.Value)
+	}
+	_, err = wr.Write([]byte(strings.Join(pairs, " ")))
+	if err != nil {
+		return err
 	}
 
 	_, err = wr.Write([]byte(">"))
