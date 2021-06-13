@@ -2,13 +2,15 @@ package jsext
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/dop251/goja"
 	"github.com/Snawoot/bbcode"
 )
 
 var builtinNatives = map[string]func(*goja.Runtime) func(call goja.FunctionCall) goja.Value{
-	"print": consolePrint,
+	"perror": stderrPrint,
+	"print": stdoutPrint,
 	"strip_bbcode": stripBBCode,
 }
 
@@ -53,13 +55,24 @@ func init() {
 	}
 }
 
-func consolePrint(vm *goja.Runtime) func(call goja.FunctionCall) goja.Value {
+func stdoutPrint(vm *goja.Runtime) func(call goja.FunctionCall) goja.Value {
 	return func(call goja.FunctionCall) goja.Value {
 		printArgs := make([]interface{}, len(call.Arguments))
 		for i, arg := range call.Arguments {
 			printArgs[i] = arg
 		}
 		fmt.Println(printArgs...)
+		return vm.ToValue(goja.Undefined())
+	}
+}
+
+func stderrPrint(vm *goja.Runtime) func(call goja.FunctionCall) goja.Value {
+	return func(call goja.FunctionCall) goja.Value {
+		printArgs := make([]interface{}, len(call.Arguments))
+		for i, arg := range call.Arguments {
+			printArgs[i] = arg
+		}
+		fmt.Fprintln(os.Stderr, printArgs...)
 		return vm.ToValue(goja.Undefined())
 	}
 }
