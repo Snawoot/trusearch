@@ -4,10 +4,53 @@ import (
 	"fmt"
 
 	"github.com/dop251/goja"
+	"github.com/Snawoot/bbcode"
 )
 
 var builtinNatives = map[string]func(*goja.Runtime) func(call goja.FunctionCall) goja.Value{
 	"print": consolePrint,
+	"strip_bbcode": stripBBCode,
+}
+
+var bbCodeCompiler = bbcode.NewCompiler(true, true) // autoCloseTags, ignoreUnmatchedClosingTags
+
+func init() {
+	for _, tag := range []string{
+		"i",
+		"b",
+		"u",
+		"s",
+		"size",
+		"color",
+		"table",
+		"th",
+		"tr",
+		"td",
+		"quote",
+		"img",
+		"url",
+		"list",
+		"hr",
+		"code",
+		"spoiler",
+		"pre",
+		"box",
+		"nfo",
+		"openline",
+		"align",
+		"font",
+	} {
+		bbCodeCompiler.SetTag(tag, func(node *bbcode.BBCodeNode) (*bbcode.HTMLTag, bool) {
+			out := bbcode.NewHTMLTag("")
+			return out, true
+		})
+	}
+	for _, tag := range []string{"hr", "br"} {
+		bbCodeCompiler.SetTag(tag, func(node *bbcode.BBCodeNode) (*bbcode.HTMLTag, bool) {
+			out := bbcode.NewHTMLTag("\n")
+			return out, true
+		})
+	}
 }
 
 func consolePrint(vm *goja.Runtime) func(call goja.FunctionCall) goja.Value {
@@ -18,6 +61,15 @@ func consolePrint(vm *goja.Runtime) func(call goja.FunctionCall) goja.Value {
 		}
 		fmt.Println(printArgs...)
 		return vm.ToValue(goja.Undefined())
+	}
+}
+
+func stripBBCode(vm *goja.Runtime) func(call goja.FunctionCall) goja.Value {
+	return func(call goja.FunctionCall) goja.Value {
+		if len(call.Arguments) == 0 {
+			return vm.ToValue(goja.Undefined())
+		}
+		return vm.ToValue(bbCodeCompiler.Compile(call.Arguments[0].String()))
 	}
 }
 

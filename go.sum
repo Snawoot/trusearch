@@ -1,3 +1,5 @@
+github.com/Snawoot/bbcode v0.0.0-20210613140909-c75a35cada7c h1:j4fge7ikSsK2H5Z6TAK0+lMheR7gkifyt+TIqeI6mqE=
+github.com/Snawoot/bbcode v0.0.0-20210613140909-c75a35cada7c/go.mod h1:lYTFzWkN5fNVQs+yxuZaN6Ofvj+nqgwU6CDZhbqQcx0=
 github.com/alecthomas/kong v0.2.17 h1:URDISCI96MIgcIlQyoCAlhOmrSw6pZScBNkctg8r0W0=
 github.com/alecthomas/kong v0.2.17/go.mod h1:ka3VZ8GZNPXv9Ov+j4YNLkI8mTuhXyr/0ktSlqIydQQ=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
