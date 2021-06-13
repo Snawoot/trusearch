@@ -1,6 +1,6 @@
 # trusearch
 
-CLI tool to perform advanced search on unofficial rutracker.org (ex torrents.ru) XML database. It doesn't require mandatory conversion of unofficial XML into own indexed format. Binary builds are available for Windows/MacOS/Linux/\*BSD/Android.
+CLI tool to perform advanced search on [unofficial rutracker.org (ex torrents.ru) XML database](https://rutracker.org/forum/viewtopic.php?t=5591249). It doesn't require mandatory conversion of unofficial XML into own indexed format. Binary builds are available for Windows/MacOS/Linux/\*BSD/Android.
 
 ## Modes of operation
 
