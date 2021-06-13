@@ -14,6 +14,13 @@ type Forum struct {
 	Name string `xml:",chardata"`
 }
 
+type Del bool
+
+func (d *Del) UnmarshalXML(decoder *xml.Decoder, _ xml.StartElement) error {
+	*d = Del(true)
+	return decoder.Skip()
+}
+
 type TorrentRecord struct {
 	ID           string     `xml:"id,attr"`
 	RegisteredAt string     `xml:"registred_at,attr"`
@@ -21,6 +28,7 @@ type TorrentRecord struct {
 	Torrent      Torrent    `xml:"torrent"`
 	Forum        Forum      `xml:"forum"`
 	Content      string     `xml:"content"`
+	Deleted      Del        `xml:"del"`
 	RawAttrs     []xml.Attr `xml:-`
 	RawContent   []byte     `xml:",innerxml"`
 }

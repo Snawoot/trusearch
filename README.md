@@ -101,6 +101,7 @@ For each torrent scanned torrent record trusearch invokes such function with a s
 | `torrent.Forum.ID`          | string | Forum ID                                                                                       |
 | `torrent.Forum.Name`        | string | Forum name                                                                                     |
 | `torrent.Content`           | string | Post contents in BBCode. Use `strip_bbcode` function if you need plain text with tags stripped |
+| `torrent.Deleted`           | int    | `1` if deleted and `0` otherwise                                                               |
 
 Script may store state between function invocations in variables or objects defined outside function. In examples presented above we reuse RegExp compiled once across all function invokations.
 
