@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -30,8 +31,11 @@ var CLI struct {
 		Dir       string     `help:"Output directory" default:"." type:"existingdir"`
 		Xmls      []*os.File `arg help:"XML files to process"`
 	} `cmd help:"Divide XML file into smaller ones by Forum ID"`
-	Help struct{} `cmd default:"1" help:"Prints CLI synopsis"`
+	Version struct{} `cmd help:"Print program version and exit"`
+	Help    struct{} `cmd default:"1" help:"Prints CLI synopsis"`
 }
+
+var version = "undefined"
 
 func run() int {
 	ctx := kong.Parse(&CLI)
@@ -55,6 +59,8 @@ func run() int {
 		if err != nil {
 			log.Fatal(err)
 		}
+	case "version":
+		fmt.Println(version)
 	default:
 		log.Fatal("Unknown command:", ctx.Command())
 	}

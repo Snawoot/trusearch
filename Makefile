@@ -10,7 +10,7 @@ NDK_CC_ARM64 = $(abspath ../../ndk-toolchain-arm64/bin/aarch64-linux-android21-c
 
 GO := go
 
-src = $(wildcard **/*.go)
+src = $(wildcard */*.go */*/*.go)
 
 native: bin-native
 all: bin-linux-amd64 bin-linux-386 bin-linux-arm \
@@ -49,76 +49,76 @@ bin-android-arm: $(OUTSUFFIX).android-arm
 bin-android-arm64: $(OUTSUFFIX).android-arm64
 
 $(OUTSUFFIX): $(src)
-	$(GO) build $(LDFLAGS_NATIVE) -o $@ ./cli/trusearch
+	$(GO) build $(LDFLAGS_NATIVE) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).linux-amd64: $(src)
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).linux-386: $(src)
-	CGO_ENABLED=0 GOOS=linux GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=linux GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).linux-arm: $(src)
-	CGO_ENABLED=0 GOOS=linux GOARCH=arm $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=linux GOARCH=arm $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).linux-arm64: $(src)
-	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).freebsd-amd64: $(src)
-	CGO_ENABLED=0 GOOS=freebsd GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=freebsd GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).freebsd-386: $(src)
-	CGO_ENABLED=0 GOOS=freebsd GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=freebsd GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).freebsd-arm: $(src)
-	CGO_ENABLED=0 GOOS=freebsd GOARCH=arm $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=freebsd GOARCH=arm $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).freebsd-arm64: $(src)
-	CGO_ENABLED=0 GOOS=freebsd GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=freebsd GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).netbsd-amd64: $(src)
-	CGO_ENABLED=0 GOOS=netbsd GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=netbsd GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).netbsd-386: $(src)
-	CGO_ENABLED=0 GOOS=netbsd GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=netbsd GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).netbsd-arm: $(src)
-	CGO_ENABLED=0 GOOS=netbsd GOARCH=arm $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=netbsd GOARCH=arm $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).netbsd-arm64: $(src)
-	CGO_ENABLED=0 GOOS=netbsd GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=netbsd GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).openbsd-amd64: $(src)
-	CGO_ENABLED=0 GOOS=openbsd GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=openbsd GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).openbsd-386: $(src)
-	CGO_ENABLED=0 GOOS=openbsd GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=openbsd GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).openbsd-arm: $(src)
-	CGO_ENABLED=0 GOOS=openbsd GOARCH=arm $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=openbsd GOARCH=arm $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).openbsd-arm64: $(src)
-	CGO_ENABLED=0 GOOS=openbsd GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=openbsd GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).darwin-amd64: $(src)
-	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).darwin-arm64: $(src)
-	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).windows-amd64.exe: $(src)
-	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).windows-386.exe: $(src)
-	CGO_ENABLED=0 GOOS=windows GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=windows GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).windows-arm.exe: $(src)
-	CGO_ENABLED=0 GOOS=windows GOARCH=arm GOARM=7 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
+	CGO_ENABLED=0 GOOS=windows GOARCH=arm GOARM=7 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).android-arm: $(src)
-	CC=$(NDK_CC_ARM) CGO_ENABLED=1 GOOS=android GOARCH=arm GOARM=7 $(GO) build $(LDFLAGS_NATIVE) -o $@ ./cli/trusearch
+	CC=$(NDK_CC_ARM) CGO_ENABLED=1 GOOS=android GOARCH=arm GOARM=7 $(GO) build $(LDFLAGS_NATIVE) -o $@ ./cli/$(PROGNAME)
 
 $(OUTSUFFIX).android-arm64: $(src)
-	CC=$(NDK_CC_ARM64) CGO_ENABLED=1 GOOS=android GOARCH=arm64 $(GO) build $(LDFLAGS_NATIVE) -o $@ ./cli/trusearch
+	CC=$(NDK_CC_ARM64) CGO_ENABLED=1 GOOS=android GOARCH=arm64 $(GO) build $(LDFLAGS_NATIVE) -o $@ ./cli/$(PROGNAME)
 
 clean:
 	rm -f bin/*
@@ -127,10 +127,10 @@ fmt:
 	$(GO) fmt ./...
 
 run:
-	$(GO) run $(LDFLAGS) ./cli/trusearch
+	$(GO) run $(LDFLAGS) ./cli/$(PROGNAME)
 
 install:
-	$(GO) install $(LDFLAGS_NATIVE) ./cli/trusearch
+	$(GO) install $(LDFLAGS_NATIVE) ./cli/$(PROGNAME)
 
 .PHONY: clean all native fmt install \
 	bin-native \
