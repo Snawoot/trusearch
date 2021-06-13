@@ -7,7 +7,7 @@ import (
 )
 
 var builtinNatives = map[string]func(*goja.Runtime) func(call goja.FunctionCall) goja.Value{
-	"print":  consolePrint,
+	"print": consolePrint,
 }
 
 func consolePrint(vm *goja.Runtime) func(call goja.FunctionCall) goja.Value {

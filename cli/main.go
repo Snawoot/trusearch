@@ -18,7 +18,8 @@ import (
 
 var CLI struct {
 	Scan struct {
-		ScriptFile *os.File   `arg help:"JS script executed for each torrent object"`
+		Inline     bool       `help:"specify script directly as argument instead of it's filename"`
+		ScriptFile string     `arg help:"JS script executed for each torrent object"`
 		Xmls       []*os.File `arg help:"XML files to process"`
 	} `cmd help:"Scan XML and apply JS function defined by script file"`
 	Forums struct {
@@ -36,11 +37,11 @@ func run() int {
 	ctx := kong.Parse(&CLI)
 	switch ctx.Command() {
 	case "scan <script-file> <xmls>":
-		scriptBytes, err := ioutil.ReadAll(CLI.Scan.ScriptFile)
+		script, err := loadScriptText(CLI.Scan.ScriptFile, CLI.Scan.Inline)
 		if err != nil {
 			log.Fatal(err)
 		}
-		return scan.Scan(wrapInputs(CLI.Scan.Xmls), string(scriptBytes))
+		return scan.Scan(wrapInputs(CLI.Scan.Xmls), script)
 	case "forums <xmls>":
 		return forums.Forums(wrapInputs(CLI.Forums.Xmls), os.Stdout)
 	case "split <xmls>":
@@ -70,4 +71,15 @@ func wrapInputs(inputs []*os.File) def.RecordScanner {
 		wrappedInputs[i] = xmlscanner.NewXMLScanner(util.NewFileWrapper(inp))
 	}
 	return multiscanner.NewMultiScanner(wrappedInputs)
+}
+
+func loadScriptText(script string, inline bool) (string, error) {
+	if inline {
+		return script, nil
+	}
+	scriptBytes, err := ioutil.ReadFile(script)
+	if err != nil {
+		return "", err
+	}
+	return string(scriptBytes), nil
 }
