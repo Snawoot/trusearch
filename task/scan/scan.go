@@ -6,6 +6,7 @@ import (
 
 	"github.com/Snawoot/trusearch/def"
 	"github.com/Snawoot/trusearch/jsext"
+	"github.com/Snawoot/trusearch/jsutil"
 
 	"github.com/dop251/goja"
 )
@@ -26,6 +27,12 @@ func Scan(scanner def.RecordScanner, funcCode string) int {
 		return 6
 	}
 
+	_, err = jsutil.FnInvoke(vm, "begin")
+	if err != nil && err != jsutil.ErrUndefined {
+		log.Printf("begin function invocation failed: %v")
+		return 7
+	}
+
 	for {
 		rec, err := scanner.Scan()
 		if err == io.EOF {
@@ -40,6 +47,12 @@ func Scan(scanner def.RecordScanner, funcCode string) int {
 		if err != nil {
 			log.Printf("Function invocation failed: %v", err)
 		}
+	}
+
+	_, err = jsutil.FnInvoke(vm, "end")
+	if err != nil && err != jsutil.ErrUndefined {
+		log.Printf("end function invocation failed: %v", err)
+		return 8
 	}
 
 	return 0
