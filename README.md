@@ -46,7 +46,7 @@ trusearch forums ~/rutracker-20210601.xml > ~/forums.csv
 Search with inline script:
 
 ```sh
-trusearch scan --inline 'let re = /Жанр:.*(adventure|приключение)/iu; (function (elem) { if (elem.Content.match(re)) { print("https://rutracker.org/forum/viewtopic.php?t=" + elem.ID) } })' /arc/user/tru/forum_1992.xml
+trusearch scan --inline 'let re = /Жанр:.*(adventure|приключение)/iu; (function (elem) { if (strip_bbcode(elem.Content).match(re)) { print("https://rutracker.org/forum/viewtopic.php?t=" + elem.ID) } })' /arc/user/tru/forum_1992.xml
 ```
 
 Same with script in file:
@@ -61,7 +61,7 @@ trusearch scan 1.js /arc/user/tru/forum_1992.xml
 let re = /Жанр:.*(adventure|приключение)/iu;
 
 (function (elem) {
-	if (elem.Content.match(re)) {
+	if (strip_bbcode(elem.Content).match(re)) {
 		print("https://rutracker.org/forum/viewtopic.php?t=" + elem.ID)
 	}
 })
