@@ -2,6 +2,20 @@
 
 CLI tool to perform advanced search on [unofficial rutracker.org (ex torrents.ru) XML database](https://rutracker.org/forum/viewtopic.php?t=5591249). It doesn't require mandatory conversion of unofficial XML into own indexed format. Binary builds are available for Windows/MacOS/Linux/\*BSD/Android.
 
+## Installation
+
+#### Binaries
+
+Pre-built binaries are available [here](https://github.com/Snawoot/trusearch/releases/latest).
+
+#### Build from source
+
+Alternatively, you may install trusearch from source. Run the following within the source directory:
+
+```
+make install
+```
+
 ## Modes of operation
 
 * `scan` - Scan XML and apply JS function defined by script file
@@ -54,18 +68,3 @@ let re = /Жанр:.*(adventure|приключение)/iu;
 ```
 
 See `trusearch --help` for more help on commands and `trusearch COMMAND --help` for help on specific command.
-
-## Installation
-
-#### Binaries
-
-Pre-built binaries are available [here](https://github.com/Snawoot/trusearch/releases/latest).
-
-#### Build from source
-
-Alternatively, you may install trusearch from source. Run the following within the source directory:
-
-```
-make install
-```
-
