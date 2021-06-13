@@ -15,5 +15,4 @@
 # vendor/
 bin/
 *.snap
-trusearch
 *.xml

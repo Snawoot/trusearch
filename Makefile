@@ -49,76 +49,76 @@ bin-android-arm: $(OUTSUFFIX).android-arm
 bin-android-arm64: $(OUTSUFFIX).android-arm64
 
 $(OUTSUFFIX): $(src)
-	$(GO) build $(LDFLAGS_NATIVE) -o $@ ./cli
+	$(GO) build $(LDFLAGS_NATIVE) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).linux-amd64: $(src)
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).linux-386: $(src)
-	CGO_ENABLED=0 GOOS=linux GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=linux GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).linux-arm: $(src)
-	CGO_ENABLED=0 GOOS=linux GOARCH=arm $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=linux GOARCH=arm $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).linux-arm64: $(src)
-	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).freebsd-amd64: $(src)
-	CGO_ENABLED=0 GOOS=freebsd GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=freebsd GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).freebsd-386: $(src)
-	CGO_ENABLED=0 GOOS=freebsd GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=freebsd GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).freebsd-arm: $(src)
-	CGO_ENABLED=0 GOOS=freebsd GOARCH=arm $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=freebsd GOARCH=arm $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).freebsd-arm64: $(src)
-	CGO_ENABLED=0 GOOS=freebsd GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=freebsd GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).netbsd-amd64: $(src)
-	CGO_ENABLED=0 GOOS=netbsd GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=netbsd GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).netbsd-386: $(src)
-	CGO_ENABLED=0 GOOS=netbsd GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=netbsd GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).netbsd-arm: $(src)
-	CGO_ENABLED=0 GOOS=netbsd GOARCH=arm $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=netbsd GOARCH=arm $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).netbsd-arm64: $(src)
-	CGO_ENABLED=0 GOOS=netbsd GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=netbsd GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).openbsd-amd64: $(src)
-	CGO_ENABLED=0 GOOS=openbsd GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=openbsd GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).openbsd-386: $(src)
-	CGO_ENABLED=0 GOOS=openbsd GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=openbsd GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).openbsd-arm: $(src)
-	CGO_ENABLED=0 GOOS=openbsd GOARCH=arm $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=openbsd GOARCH=arm $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).openbsd-arm64: $(src)
-	CGO_ENABLED=0 GOOS=openbsd GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=openbsd GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).darwin-amd64: $(src)
-	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).darwin-arm64: $(src)
-	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).windows-amd64.exe: $(src)
-	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).windows-386.exe: $(src)
-	CGO_ENABLED=0 GOOS=windows GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=windows GOARCH=386 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).windows-arm.exe: $(src)
-	CGO_ENABLED=0 GOOS=windows GOARCH=arm GOARM=7 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli
+	CGO_ENABLED=0 GOOS=windows GOARCH=arm GOARM=7 $(GO) build $(BUILDOPTS) $(LDFLAGS) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).android-arm: $(src)
-	CC=$(NDK_CC_ARM) CGO_ENABLED=1 GOOS=android GOARCH=arm GOARM=7 $(GO) build $(LDFLAGS_NATIVE) -o $@ ./cli
+	CC=$(NDK_CC_ARM) CGO_ENABLED=1 GOOS=android GOARCH=arm GOARM=7 $(GO) build $(LDFLAGS_NATIVE) -o $@ ./cli/trusearch
 
 $(OUTSUFFIX).android-arm64: $(src)
-	CC=$(NDK_CC_ARM64) CGO_ENABLED=1 GOOS=android GOARCH=arm64 $(GO) build $(LDFLAGS_NATIVE) -o $@ ./cli
+	CC=$(NDK_CC_ARM64) CGO_ENABLED=1 GOOS=android GOARCH=arm64 $(GO) build $(LDFLAGS_NATIVE) -o $@ ./cli/trusearch
 
 clean:
 	rm -f bin/*
@@ -127,10 +127,10 @@ fmt:
 	$(GO) fmt ./...
 
 run:
-	$(GO) run $(LDFLAGS) ./cli
+	$(GO) run $(LDFLAGS) ./cli/trusearch
 
 install:
-	$(GO) install $(LDFLAGS_NATIVE) ./cli
+	$(GO) install $(LDFLAGS_NATIVE) ./cli/trusearch
 
 .PHONY: clean all native fmt install \
 	bin-native \
