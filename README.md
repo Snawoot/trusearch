@@ -68,3 +68,15 @@ let re = /Жанр:.*(adventure|приключение)/iu;
 ```
 
 See `trusearch --help` for more help on commands and `trusearch COMMAND --help` for help on specific command.
+
+## JS runtime
+
+trusearch uses JavaScript to allow user implement any matching or aggregation logic they want. JS interpreter used by program is [goja](https://github.com/dop251/goja), pure-Go implementation of ECMAScript 5.1. trusearch extends JS runtime with few native built-ins for user's convenience.
+
+### Functions
+
+| Function       | Arguments    | Return value | Description                                                 |
+| -------------- | ------------ | ------------ | ----------------------------------------------------------- |
+| `perror`       | `value, ...` | None         | Prints values to stderr                                     |
+| `print`        | `value, ...` | None         | Prints values to stdout                                     |
+| `strip_bbcode` | `string`     | `string`     | Renders text with BBCode tags into plain text (strips tags) |
