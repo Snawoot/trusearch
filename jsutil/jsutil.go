@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	ErrUndefined = errors.New("value is not defined")
+	ErrUndefined    = errors.New("value is not defined")
 	ErrNotAFunction = errors.New("value is not a function")
 )
 

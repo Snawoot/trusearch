@@ -27,6 +27,7 @@ type TorrentRecord struct {
 	Size         string     `xml:"size,attr"`
 	Torrent      Torrent    `xml:"torrent"`
 	Forum        Forum      `xml:"forum"`
+	Title        string     `xml:"title"`
 	Content      string     `xml:"content"`
 	Deleted      Del        `xml:"del"`
 	RawAttrs     []xml.Attr `xml:-`

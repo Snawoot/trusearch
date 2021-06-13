@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/dop251/goja"
 	"github.com/Snawoot/bbcode"
+	"github.com/dop251/goja"
 )
 
 var builtinNatives = map[string]func(*goja.Runtime) func(call goja.FunctionCall) goja.Value{
-	"perror": stderrPrint,
-	"print": stdoutPrint,
+	"perror":       stderrPrint,
+	"print":        stdoutPrint,
 	"strip_bbcode": stripBBCode,
 }
 
