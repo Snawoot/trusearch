@@ -80,3 +80,42 @@ trusearch uses JavaScript to allow user implement any matching or aggregation lo
 | `perror`       | `value, ...` | None         | Prints values to stderr                                     |
 | `print`        | `value, ...` | None         | Prints values to stdout                                     |
 | `strip_bbcode` | `string`     | `string`     | Renders text with BBCode tags into plain text (strips tags) |
+
+### Scan mode
+
+In scan mode program expects provided script to be evaluated into a function. So, minimal example of such script is:
+
+```js
+(function (torrent) {})
+```
+
+For each torrent scanned torrent record trusearch invokes such function with a single argument holding object with torrent record:
+
+| Property                    | Type   | Description                                                                                    |
+| --------------------------- | ------ | ---------------------------------------------------------------------------------------------- |
+| `torrent.ID`                | string | Topic ID at rutracker forum                                                                    |
+| `torrent.RegisteredAt`      | string | Torrent registration date in same format as in XML                                             |
+| `torrent.Size`              | string | Torrent size                                                                                   |
+| `torrent.Torrent.Hash`      | string | Bittorrent info hash. Can be used to generate DHT magnet link, not depending on tracker        |
+| `torrent.Torrent.TrackerID` | string | rutracker tracker server ID                                                                    |
+| `torrent.Forum.ID`          | string | Forum ID                                                                                       |
+| `torrent.Forum.Name`        | string | Forum name                                                                                     |
+| `torrent.Content`           | string | Post contents in BBCode. Use `strip_bbcode` function if you need plain text with tags stripped |
+
+Script may store state between function invocations in variables or objects defined outside function. In examples presented above we reuse RegExp compiled once across all function invokations.
+
+Also user may define optional `begin` and `end` functions in script. If defined, `begin()` will be invoked before iteration and `end()` will be invoked after. It's correct to define either of them, both, or none. Example:
+
+```js
+function begin() {
+	print("begin")
+}
+
+function end() {
+	print("end")
+}
+
+(function () {
+	print("record")
+})
+```
